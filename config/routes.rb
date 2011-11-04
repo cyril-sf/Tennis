@@ -1,4 +1,6 @@
 Tyw::Application.routes.draw do
+  resources :matches
+
   devise_for :users
 
   # The priority is based upon order of creation:
