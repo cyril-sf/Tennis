@@ -3,7 +3,7 @@ class Match
 
   field :date, type: Date
 
-  has_many :contenders
+  has_many :contenders, :autosave => true
   accepts_nested_attributes_for :contenders
 
   after_initialize :create_contenders
