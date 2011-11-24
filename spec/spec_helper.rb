@@ -42,6 +42,13 @@ Spork.prefork do
       DatabaseCleaner.clean
     end
   end
+
+  def test_user
+    @test_user ||= User.find('1') rescue User.create(:_id => 1,
+                                                 :email => 'test@test.com',
+                                                 :password => 'passw0rd',
+                                                 :password_confirmation => 'passw0rd')
+  end
 end
 
 Spork.each_run do
