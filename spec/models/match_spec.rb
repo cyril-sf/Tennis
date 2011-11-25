@@ -52,6 +52,17 @@ describe Match do
         end
       end
     end
+
+    context 'with a multiparameter date' do
+      it 'assigns the correct date' do
+        date = Date.current
+        multi_params = valid_attributes.merge("date(1i)"=>date.year.to_s,
+                                              "date(2i)"=>date.month.to_s,
+                                              "date(3i)"=>date.day.to_s)
+        match = Match.new multi_params
+        match.date.should == date
+      end
+    end
   end
 
   describe 'contenders' do
