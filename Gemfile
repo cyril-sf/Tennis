@@ -39,6 +39,7 @@ group :test, :development do
 end
 
 group :test do
+  gem 'capybara'
   # Pretty printed test output
   gem 'turn', :require => false
 
