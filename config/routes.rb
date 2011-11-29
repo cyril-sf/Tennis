@@ -1,4 +1,6 @@
 Tyw::Application.routes.draw do
+  resources :competitions
+
   resources :matches
 
   devise_for :users

@@ -34,6 +34,7 @@ describe Match do
     context 'with contenders' do
       before(:each) do
         @match_ref = Match.new(:date => Date.today)
+        @match_ref.stub!(:update_ladder)
         user = User.create(:email => 'john@doe.com', :password => 'tototo')
         @match_ref.contenders.each do |contender|
           contender.update_attributes(:user_id => user.id,
@@ -69,6 +70,7 @@ describe Match do
     context 'for a new match' do
       it 'saves the contenders with the match' do
         m = Match.new valid_attributes
+        m.stub!(:update_ladder)
         m.save
         m.contenders.each do |contender|
           contender.persisted?.should be_true
@@ -78,10 +80,61 @@ describe Match do
 
     context 'when destroying a match' do
       it 'destroys the associated contenders' do
+        Match.any_instance.stub(:update_ladder)
         m = Match.create! valid_attributes
         lambda do
           m.destroy
         end.should change(Contender, :count).by( -2 )
+      end
+    end
+  end
+
+  describe '#update_ladder' do
+    before(:each) do
+      @competition = Competition.create(:name => 'ladder')
+      @winner = User.create(:email     => 'john@doe.com',
+                            :password  => 'passw0rd',
+                            :password_confirmation => 'passw0rd')
+      @loser = User.create( :email     => 'john@doe.com',
+                            :password  => 'passw0rd',
+                            :password_confirmation => 'passw0rd')
+      @match = Match.new( valid_attributes )
+      @match.competition = @competition
+      @match.contenders[0].user = @winner
+      @match.contenders[1].user = @loser
+    end
+
+    context 'with the loser ranked' do
+      before(:each) do
+        @competition[:ladder] = [@loser]
+      end
+      context 'and the winner ranked' do
+        context 'when the winner has a better rank than the loser' do
+          before(:each) do
+          end
+
+          it 'doesnt change any position'
+        end
+
+        context 'when the winner has a lower rank than the loser' do
+          it 'moves the winner before the loser'
+        end
+      end
+
+      context 'and the winner isnt ranked' do
+        it 'inserts the winner before the loser'
+      end
+    end
+
+    context 'with the loser not ranked' do
+      it 'moves the loser in the ladder'
+
+      context 'with the winner ranked' do
+        it 'doesnt change the winner position'
+      end
+
+      context 'and the winner isnt ranked' do
+        'it inserts the winner where he belongs'
       end
     end
   end

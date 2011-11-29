@@ -16,6 +16,10 @@
     <%= f.date_select :date %>
   </div>
 
+  <div class="field">
+    <%= f.collection_select :competition_id, Competition.all, :id, :name, :prompt => true %>
+  </div>
+
   <%= f.fields_for :contenders do |player_form| %>
   <div class="field">
     <%= player_form.collection_select :user_id, User.all, :id, :email, :prompt => true %>

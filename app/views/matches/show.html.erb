@@ -5,6 +5,11 @@
   <span><%= @match.date %></span>
 </div>
 
+<div class="field">
+  <span>Competition</span><br />
+  <span><%= @match.competition.name %></span>
+</div>
+
 <% @match.contenders.each do |contender| %>
   <div class="field">
     <span><%= contender.user.email %></span>
