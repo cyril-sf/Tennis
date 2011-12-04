@@ -1,5 +1,10 @@
 require 'spec_helper'
 
 describe Competition do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'initialization' do
+    it 'creates the ladder' do
+      c = Competition.new
+      c[:ladder].is_a?(Array).should be_true
+    end
+  end
 end

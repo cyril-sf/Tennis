@@ -37,7 +37,8 @@ describe MatchesController do
           "set1"=>"6",
           "set2"=>"2",
           "set3"=>"3"}
-      }}
+      },
+      "competition_id" => test_competition.id}
   end
 
   before(:each) do

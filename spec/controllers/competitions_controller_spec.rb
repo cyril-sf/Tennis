@@ -27,6 +27,10 @@ describe CompetitionsController do
     {}
   end
 
+  before(:each) do
+    sign_in(test_user)
+  end
+
   describe "GET index" do
     it "assigns all competitions as @competitions" do
       competition = Competition.create! valid_attributes

@@ -18,7 +18,22 @@ describe Match do
           "set1"=>"6",
           "set2"=>"2",
           "set3"=>"3"}
-      }}
+      },
+      "competition_id" => test_competition.id
+    }
+  end
+
+  describe 'validation' do
+    context 'the competition' do
+      it 'is required' do
+        match  = Match.new
+        match.should have_errors_on(:competition)
+
+        c = Competition.new
+        match = Match.new( :competition => c)
+        match.should_not have_errors_on(:competition)
+      end
+    end
   end
 
   describe 'initialization' do
@@ -33,16 +48,16 @@ describe Match do
 
     context 'with contenders' do
       before(:each) do
-        @match_ref = Match.new(:date => Date.today)
+        @match_ref = Match.new(:date => Date.today, :competition => test_competition)
         @match_ref.stub!(:update_ladder)
-        user = User.create(:email => 'john@doe.com', :password => 'tototo')
+        user = User.create!(:email => 'john@doe.com', :password => 'tototo')
         @match_ref.contenders.each do |contender|
           contender.update_attributes(:user_id => user.id,
                                       :set1 => 0,
                                       :set2 => 0,
                                       :set3 => 0)
         end
-        @match_ref.save
+        @match_ref.save!
       end
 
       it 'doesnt create new contenders' do
@@ -92,10 +107,10 @@ describe Match do
   describe '#update_ladder' do
     before(:each) do
       @competition = Competition.create(:name => 'ladder')
-      @winner = User.create(:email     => 'john@doe.com',
+      @winner = User.create!(:email     => 'john@doe.com',
                             :password  => 'passw0rd',
                             :password_confirmation => 'passw0rd')
-      @loser = User.create( :email     => 'john@doe.com',
+      @loser = User.create!( :email     => 'jane@doe.com',
                             :password  => 'passw0rd',
                             :password_confirmation => 'passw0rd')
       @match = Match.new( valid_attributes )
@@ -111,30 +126,62 @@ describe Match do
       context 'and the winner ranked' do
         context 'when the winner has a better rank than the loser' do
           before(:each) do
+            @competition[:ladder].insert( 0, @winner )
           end
 
-          it 'doesnt change any position'
+          it 'doesnt change any position' do
+            @match.save
+            @competition[:ladder].should == [@winner, @loser]
+          end
         end
 
         context 'when the winner has a lower rank than the loser' do
-          it 'moves the winner before the loser'
+          before(:each) do
+            @competition[:ladder] << @winner
+          end
+
+          it 'moves the winner before the loser' do
+            @match.save
+            @competition[:ladder].should == [@winner, @loser]
+          end
         end
       end
 
       context 'and the winner isnt ranked' do
-        it 'inserts the winner before the loser'
+        it 'inserts the winner before the loser' do
+          @match.save
+          @competition[:ladder].should == [@winner, @loser]
+        end
       end
     end
 
     context 'with the loser not ranked' do
-      it 'moves the loser in the ladder'
+      before(:each) do
+        @competition[:ladder] = []
+      end
+
+      it 'moves the loser in the ladder' do
+        @match.save
+        @competition[:ladder].last.should == @loser
+      end
 
       context 'with the winner ranked' do
-        it 'doesnt change the winner position'
+        before(:each) do
+          @competition[:ladder] = [@winner]
+        end
+
+        it 'doesnt change the winner position' do
+          winner_pos = @competition[:ladder].index( @winner )
+          @match.save
+          @competition[:ladder].index( @winner ).should == winner_pos
+        end
       end
 
       context 'and the winner isnt ranked' do
-        'it inserts the winner where he belongs'
+        it 'inserts the winner where he belongs' do
+          @match.save
+          @competition[:ladder].should == [@winner, @loser]
+        end
       end
     end
   end

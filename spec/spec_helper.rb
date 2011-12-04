@@ -45,10 +45,15 @@ Spork.prefork do
   end
 
   def test_user
-    @test_user ||= User.find('1') rescue User.create(:_id => 1,
+    @test_user ||= User.find('4edbbc186c937015e4000001') rescue User.create!(:_id => '4edbbc186c937015e4000001',
                                                  :email => 'test@test.com',
                                                  :password => 'passw0rd',
                                                  :password_confirmation => 'passw0rd')
+  end
+
+  def test_competition
+    @test_competition ||= Competition.find( '4edbbc186c937015e4000001' ) rescue Competition.create!(:_id => '4edbbc186c937015e4000001',
+                                                                           :name => 'ladder test')
   end
 
   # The Devise auth helpers don't work for RSpec 'request' specs
