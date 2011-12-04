@@ -11,6 +11,7 @@ Spork.prefork do
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
   require 'rspec/autorun'
+  require 'capybara/rspec'
 
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
@@ -42,6 +43,34 @@ Spork.prefork do
       DatabaseCleaner.clean
     end
   end
+
+  def test_user
+    @test_user ||= User.find('4edbbc186c937015e4000001') rescue User.create!(:_id => '4edbbc186c937015e4000001',
+                                                 :email => 'test@test.com',
+                                                 :password => 'passw0rd',
+                                                 :password_confirmation => 'passw0rd')
+  end
+
+  def test_competition
+    @test_competition ||= Competition.find( '4edbbc186c937015e4000001' ) rescue Competition.create!(:_id => '4edbbc186c937015e4000001',
+                                                                           :name => 'ladder test')
+  end
+
+  # The Devise auth helpers don't work for RSpec 'request' specs
+  def integration_sign_in(user)
+    visit new_user_session_path
+    within '.user_new' do
+      fill_in 'user[email]',    :with => user.email
+      fill_in 'user[password]', :with => user.password
+      click_button 'Sign in'
+    end
+    user
+  end
+
+  def integration_log_out
+    visit destroy_user_session_path
+  end
+  
 end
 
 Spork.each_run do

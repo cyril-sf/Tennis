@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<div class="field">
+  <span>Date</span><br />
+  <span><%= @match.date %></span>
+</div>
+
+<div class="field">
+  <span>Competition</span><br />
+  <span><%= @match.competition.name %></span>
+</div>
+
+<% @match.contenders.each do |contender| %>
+  <div class="field">
+    <span><%= contender.user.email %></span>
+    <span><%= contender.set1 %></span>
+    <span><%= contender.set2 %></span>
+    <span><%= contender.set3 %></span>
+  </div>
+<% end %>
+
+<%= link_to 'Edit', edit_match_path(@match) %> |
+<%= link_to 'Back', matches_path %>
