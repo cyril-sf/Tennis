@@ -7,8 +7,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <div id="container">
+    <div id="user_nav">
+      <% if user_signed_in? %>
+        Signed in as <%= current_user.email %>.<br />
+        Not you? <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+      <% else %>
+        <%= link_to "Sign In", user_omniauth_authorize_path(:facebook) %>
+      <% end %>
+    </div>
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+    <% end %>
+    <%= yield %>
+  </div>
 </body>
 </html>
