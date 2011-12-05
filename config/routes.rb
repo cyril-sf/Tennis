@@ -1,5 +1,5 @@
 Tyw::Application.routes.draw do
-  get "home/index"
+  post "home/index"
 
   resources :competitions
 
