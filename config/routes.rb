@@ -1,4 +1,6 @@
 Tyw::Application.routes.draw do
+  get "canvas/index"
+
   get "home/index"
 
   resources :competitions
