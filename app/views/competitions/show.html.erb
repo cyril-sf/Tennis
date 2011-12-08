@@ -6,5 +6,7 @@
 </p>
 
 
-<%= link_to 'Edit', edit_competition_path(@competition) %> |
+<% if can? :update, @competition %>
+  <%= link_to 'Edit', edit_competition_path(@competition) %> |
+<% end %>
 <%= link_to 'Back', competitions_path %>

@@ -5,6 +5,11 @@ class ApplicationController < ActionController::Base
 
   before_filter :decode_facebook_request
 
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = "Access denied."
+    redirect_to root_url
+  end
+
 private
   def decode_facebook_request
     @signed_request = decode_data( params[:signed_request] ) if params[:signed_request]

@@ -14,8 +14,12 @@
       <td><%= contender.user.email %></td>
     <% end %>
     <td><%= link_to 'Show', match %></td>
-    <td><%= link_to 'Edit', edit_match_path(match) %></td>
-    <td><%= link_to 'Destroy', match, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% if can? :update, match %>
+      <td><%= link_to 'Edit', edit_match_path(match) %></td>
+    <% end %>
+    <% if can? :delete, match %>
+      <td><%= link_to 'Destroy', match, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

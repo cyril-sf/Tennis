@@ -12,8 +12,12 @@
   <tr>
     <td><%= competition.name %></td>
     <td><%= link_to 'Show', competition %></td>
-    <td><%= link_to 'Edit', edit_competition_path(competition) %></td>
-    <td><%= link_to 'Destroy', competition, confirm: 'Are you sure?', method: :delete %></td>
+    <% if can? :update, competition %>
+      <td><%= link_to 'Edit', edit_competition_path(competition) %></td>
+    <% end %>
+    <% if can? :destroy, competition %>
+      <td><%= link_to 'Destroy', competition, confirm: 'Are you sure?', method: :delete %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

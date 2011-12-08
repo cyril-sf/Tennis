@@ -19,5 +19,7 @@
   </div>
 <% end %>
 
-<%= link_to 'Edit', edit_match_path(@match) %> |
+<% if can? :update, @match %>
+  <%= link_to 'Edit', edit_match_path(@match) %> |
+<% end %>
 <%= link_to 'Back', matches_path %>
