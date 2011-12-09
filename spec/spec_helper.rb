@@ -48,7 +48,8 @@ Spork.prefork do
     @test_user ||= User.find('4edbbc186c937015e4000001') rescue User.create!(:_id => '4edbbc186c937015e4000001',
                                                  :email => 'test@test.com',
                                                  :password => 'passw0rd',
-                                                 :password_confirmation => 'passw0rd')
+                                                 :password_confirmation => 'passw0rd',
+                                                 :admin => true)
   end
 
   def test_competition

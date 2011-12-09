@@ -2,6 +2,10 @@ development:
   app_id: '166620076728120'
   secret: 'df2bb09c7c69d8ac1a2b456e3d40351c'
   api_key: '166620076728120'
+test:
+  app_id: '166620076728120'
+  secret: 'df2bb09c7c69d8ac1a2b456e3d40351c'
+  api_key: '166620076728120'
 production:
   app_id: '166620076728120'
   secret: 'df2bb09c7c69d8ac1a2b456e3d40351c'
