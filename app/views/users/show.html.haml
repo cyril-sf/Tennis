@@ -1,0 +1,14 @@
+%p#notice= notice
+.field
+  %span Email
+  %br/
+  %span= @user.email
+- if current_user.admin?
+  .field
+    %span Admin
+    %br/
+    %span= @user.admin
+- if can? :update, @user
+  = link_to 'Edit', edit_user_path(@user)
+  |
+= link_to 'Back', users_path

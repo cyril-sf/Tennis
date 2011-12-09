@@ -1,0 +1,15 @@
+%h1 Listing users
+%table
+  %tr
+    %th
+    %th
+    %th
+  - @users.each do |user|
+    %tr
+      %td= user.email
+      %td= link_to 'Show', user
+      - if can? :update, user
+        %td= link_to 'Edit', edit_user_path(user)
+      - if can? :delete, user
+        %td= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete
+%br/

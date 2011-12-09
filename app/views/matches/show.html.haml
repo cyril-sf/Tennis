@@ -1,0 +1,19 @@
+%p#notice= notice
+.field
+  %span Date
+  %br/
+  %span= @match.date
+.field
+  %span Competition
+  %br/
+  %span= @match.competition.name
+- @match.contenders.each do |contender|
+  .field
+    %span= contender.user.email
+    %span= contender.set1
+    %span= contender.set2
+    %span= contender.set3
+- if can? :update, @match
+  = link_to 'Edit', edit_match_path(@match)
+  |
+= link_to 'Back', matches_path
