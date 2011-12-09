@@ -5,6 +5,9 @@ describe "competitions/show.html.erb" do
     @competition = assign(:competition, stub_model(Competition,
       :name => "Name"
     ))
+    @ability = Object.new
+    @ability.extend(CanCan::Ability)
+    controller.stub(:current_ability) { @ability }
   end
 
   it "renders attributes in <p>" do

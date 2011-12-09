@@ -32,6 +32,10 @@ describe "matches/show.html.erb" do
       contender.user = user
     end
     @match.save
+
+    @ability = Object.new
+    @ability.extend(CanCan::Ability)
+    controller.stub(:current_ability) { @ability }
   end
 
   it "renders attributes in <p>" do

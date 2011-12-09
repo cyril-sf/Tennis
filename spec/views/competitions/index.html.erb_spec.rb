@@ -10,6 +10,10 @@ describe "competitions/index.html.erb" do
         :name => "Name"
       )
     ])
+
+    @ability = Object.new
+    @ability.extend(CanCan::Ability)
+    controller.stub(:current_ability) { @ability }
   end
 
   it "renders a list of competitions" do
