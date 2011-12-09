@@ -26,4 +26,12 @@ private
    encoded_sig, payload = str.split('.')
    data = ActiveSupport::JSON.decode base64_url_decode(payload)
   end
+
+  def after_sign_in_path_for(resource)
+  	stored_location_for(resource) || canvas_index_path
+  end
+
+  def after_sign_out_path_for(resource_or_scope)
+  	home_index_path
+  end
 end
