@@ -11,6 +11,9 @@ class Ability
       can :update, Match do |match|
         match.contenders.collect{|contender| contender.user}.include?( user )
       end
+      can :update, User do |user_to_update|
+        user_to_update == user
+      end
     end
 
     # The first argument to `can` is the action you are giving the user permission to do.

@@ -1,0 +1,24 @@
+<h1>Listing users</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.email %></td>
+    <td><%= link_to 'Show', user %></td>
+    <% if can? :update, user %>
+      <td><%= link_to 'Edit', edit_user_path(user) %></td>
+    <% end %>
+    <% if can? :delete, user %>
+      <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
