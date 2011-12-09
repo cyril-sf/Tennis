@@ -36,6 +36,8 @@ gem 'cancan'
 group :development do
   # To use debugger
   gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'pry'
+  gem 'rails-footnotes'
 end
 
 group :test, :development do
