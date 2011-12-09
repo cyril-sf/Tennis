@@ -1,0 +1,8 @@
+%p#notice= notice
+%p
+  %b Name:
+  = @competition.name
+- if can? :update, @competition
+  = link_to 'Edit', edit_competition_path(@competition)
+  |
+= link_to 'Back', competitions_path

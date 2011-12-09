@@ -23,6 +23,7 @@ gem 'omniauth-facebook'
 gem 'oa-core'
 gem 'facebooker2'
 gem 'cancan'
+gem 'haml'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
