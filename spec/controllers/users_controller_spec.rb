@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe UsersController do
 
+  before(:each) do
+    sign_in(test_user)
+  end
+
   describe "GET 'index'" do
     it "returns http success" do
       get 'index'
@@ -11,7 +15,7 @@ describe UsersController do
 
   describe "GET 'show'" do
     it "returns http success" do
-      get 'show'
+      get 'show', :id => test_user.id
       response.should be_success
     end
   end
