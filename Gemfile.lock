@@ -47,6 +47,7 @@ GEM
       xpath (~> 0.1.4)
     childprocess (0.2.2)
       ffi (~> 1.0.6)
+    coderay (0.9.8)
     coffee-rails (3.1.1)
       coffee-script (>= 2.2.0)
       railties (~> 3.1.0)
@@ -92,6 +93,7 @@ GEM
     guard-spork (0.3.1)
       guard (>= 0.8.4)
       spork (>= 0.8.4)
+    haml (3.1.4)
     hashie (1.2.0)
     hike (1.2.1)
     httparty (0.8.1)
@@ -109,6 +111,8 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    method_source (0.6.7)
+      ruby_parser (>= 2.3.1)
     mime-types (1.17.2)
     mogli (0.0.28)
       httparty (>= 0.4.3)
@@ -139,6 +143,11 @@ GEM
       omniauth (~> 1.0)
     orm_adapter (0.0.5)
     polyglot (0.3.3)
+    pry (0.9.7.4)
+      coderay (~> 0.9.8)
+      method_source (~> 0.6.7)
+      ruby_parser (>= 2.3.1)
+      slop (~> 2.1.0)
     rack (1.3.5)
     rack-cache (1.1)
       rack (>= 0.4)
@@ -156,6 +165,8 @@ GEM
       activesupport (= 3.1.1)
       bundler (~> 1.0)
       railties (= 3.1.1)
+    rails-footnotes (3.7.5)
+      rails (>= 3.0.0)
     railties (3.1.1)
       actionpack (= 3.1.1)
       activesupport (= 3.1.1)
@@ -192,6 +203,8 @@ GEM
     ruby-hmac (0.4.0)
     ruby_core_source (0.1.5)
       archive-tar-minitar (>= 0.5.2)
+    ruby_parser (2.3.1)
+      sexp_processor (~> 3.0)
     rubyzip (0.9.5)
     sass (3.1.10)
     sass-rails (3.1.4)
@@ -205,6 +218,8 @@ GEM
       ffi (~> 1.0.9)
       json_pure
       rubyzip
+    sexp_processor (3.0.9)
+    slop (2.1.0)
     spork (0.9.0.rc9)
     sprockets (2.0.3)
       hike (~> 1.2)
@@ -243,12 +258,15 @@ DEPENDENCIES
   guard-livereload
   guard-rspec
   guard-spork
+  haml
   jquery-rails
   mongoid
   mongoid-rspec
   oa-core
   omniauth-facebook
+  pry
   rails (= 3.1.1)
+  rails-footnotes
   rb-fsevent
   rspec-rails
   ruby-debug19

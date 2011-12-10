@@ -23,6 +23,7 @@ gem 'omniauth-facebook'
 gem 'oa-core'
 gem 'facebooker2'
 gem 'cancan'
+gem 'haml'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -36,6 +37,8 @@ gem 'cancan'
 group :development do
   # To use debugger
   gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'pry'
+  gem 'rails-footnotes'
 end
 
 group :test, :development do

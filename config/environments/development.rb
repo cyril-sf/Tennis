@@ -35,4 +35,13 @@ Tyw::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Use the pry gem instead of irb for the rails console
+  silence_warnings do
+    begin
+      require 'pry'
+      IRB = Pry
+      rescue LoadError
+    end
+  end
 end

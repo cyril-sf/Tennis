@@ -1,6 +1,24 @@
 require 'spec_helper'
 
 describe Match do
+  describe 'attributes' do
+    [:date].each do |attr|
+      it "responds to #{attr}" do
+        Match.new.should respond_to(attr)
+      end
+    end
+  end
+
+  describe 'associations' do
+    it 'belongs to a competition' do
+      Match.should belong_to :competition
+    end
+
+    it 'has many contenders' do
+      Match.should have_many :contenders
+    end
+  end
+
   # This should return the minimal set of attributes required to create a valid
   # Match. As you add validations to Match, be sure to
   # update the return value of this method accordingly.
