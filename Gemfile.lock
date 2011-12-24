@@ -105,6 +105,9 @@ GEM
       thor (~> 0.14)
     json (1.6.1)
     json_pure (1.6.1)
+    koala (1.2.1)
+      faraday (~> 0.7.0)
+      multi_json (~> 1.0)
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
     mail (2.3.0)
@@ -260,6 +263,7 @@ DEPENDENCIES
   guard-spork
   haml
   jquery-rails
+  koala
   mongoid
   mongoid-rspec
   oa-core

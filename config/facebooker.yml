@@ -1,7 +1,7 @@
 development:
-  app_id: '166620076728120'
-  secret: 'df2bb09c7c69d8ac1a2b456e3d40351c'
-  api_key: '166620076728120'
+  app_id: '185797408106593'
+  secret: '43a65d20883c8ab2963c8cf41ef46452'
+  api_key: '185797408106593'
 test:
   app_id: '166620076728120'
   secret: 'df2bb09c7c69d8ac1a2b456e3d40351c'

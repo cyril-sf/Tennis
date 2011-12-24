@@ -22,6 +22,7 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem 'oa-core'
 gem 'facebooker2'
+gem 'koala'
 gem 'cancan'
 gem 'haml'
 

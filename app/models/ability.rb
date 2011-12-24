@@ -14,6 +14,7 @@ class Ability
       can :update, User do |user_to_update|
         user_to_update == user
       end
+      can :invite, User
     end
 
     # The first argument to `can` is the action you are giving the user permission to do.

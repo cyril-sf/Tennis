@@ -13,7 +13,8 @@ class User
     if user = User.where(:email => data["email"]).first
       user
     else # Create an user with a stub password.
-      User.create!(:email => data["email"], :encrypted_password => Devise.friendly_token[0,20])
+      password = Devise.friendly_token[0,20]
+      User.create!(:email => data["email"], :password => password, :password_confirmation => password)
     end
   end
 end

@@ -21,4 +21,8 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def invite
+
+  end
+
 end
