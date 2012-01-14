@@ -10,6 +10,11 @@ Tyw::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks' }
   resources :users, :only => [:index, :show, :edit, :update, :destroy]
 
+  devise_for :users, :controllers => {:sessions => 'sessions'}, :skip => [:sessions] do
+    match 'login' => 'sessions#create', :via => [:get, :post]
+    get 'logout' => 'sessions#destroy', :as => :destroy_user_session
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
