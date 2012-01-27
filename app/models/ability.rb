@@ -7,6 +7,8 @@ class Ability
       can :manage, :all
     else
       can :read, :all
+      can :create, Invitation
+      can :callback, Invitation
       can :create, Match
       can :update, Match do |match|
         match.contenders.collect{|contender| contender.user}.include?( user )
@@ -14,7 +16,6 @@ class Ability
       can :update, User do |user_to_update|
         user_to_update == user
       end
-      can :invite, User
     end
 
     # The first argument to `can` is the action you are giving the user permission to do.

@@ -1,4 +1,10 @@
 Tyw::Application.routes.draw do
+  resources :invitations do
+    collection do
+      get 'callback'
+    end
+  end
+
   get "canvas/index"
 
   get "home/index"

@@ -1,4 +1,9 @@
 - if current_user
 - else
+  <script src="http://connect.facebook.net/en_US/all.js"></script>
+  <div id="fb-root"></div>
+  %script
+    FB.init({appId: '185797408106593', xfbml: true, cookie: true, oauth: true});
+    FB.login({scope: 'email});
   %h1 We're sorry, but TennisYourWorld is a private group.
   %p You need to be invited by a member in order to access this content.
