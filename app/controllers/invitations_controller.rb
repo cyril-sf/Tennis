@@ -5,7 +5,6 @@ class InvitationsController < ApplicationController
   # GET /invitations
   # GET /invitations.json
   def index
-    debugger
     @invitations = Invitation.all
 
     respond_to do |format|
@@ -89,5 +88,7 @@ class InvitationsController < ApplicationController
     params[:to].each_value do | facebook_id |
       Invitation.create( user: current_user, invitee_id: facebook_id )
     end
+
+    redirect_to invitations_path, :notice => "#{params[:to].length} friend(s) invited."
   end
 end
