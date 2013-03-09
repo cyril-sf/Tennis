@@ -60,7 +60,7 @@ Spork.prefork do
   # The Devise auth helpers don't work for RSpec 'request' specs
   def integration_sign_in(user)
     visit new_user_session_path
-    within '.user_new' do
+    within '.new_user' do
       fill_in 'user[email]',    :with => user.email
       fill_in 'user[password]', :with => user.password
       click_button 'Sign in'

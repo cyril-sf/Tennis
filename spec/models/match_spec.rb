@@ -68,7 +68,7 @@ describe Match do
       before(:each) do
         @match_ref = Match.new(:date => Date.today, :competition => test_competition)
         @match_ref.stub!(:update_ladder)
-        user = User.create!(:email => 'john@doe.com', :password => 'tototo')
+        user = User.create!(:email => 'john@doe.com', :password => 'totototo')
         @match_ref.contenders.each do |contender|
           contender.update_attributes(:user_id => user.id,
                                       :set1 => 0,
